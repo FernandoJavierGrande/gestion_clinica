@@ -1,5 +1,7 @@
 package com.api.consultorios.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "usuario")
@@ -18,18 +21,22 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long Id;
+	private Long Id;
 	
 	@NotBlank(message = "El Usuario es obligatorio")
 	@Column(nullable = false)
-	public String user;
+	private String user;
 	
 	@NotBlank(message = "El Usuario es obligatorio")
 	@Column(nullable = false)
-	public String password;
+	private String password;
 	
-	public String permisos; //["admin","user"]
+	private String permisos; //["admin","user"]
 	
-	public String Observaciones;
+	private String Observaciones;
+	
+	
+	@OneToMany
+	private List<Turno> turnos;
 	
 }

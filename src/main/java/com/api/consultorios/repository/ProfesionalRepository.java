@@ -15,4 +15,5 @@ public interface ProfesionalRepository extends JpaRepository<Profesional, Long> 
 	
 	@Query(value =  "select p from Profesional p order by p.nombre")
 	public List<Profesional> getProfesionales();
+	
 }

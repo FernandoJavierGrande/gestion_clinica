@@ -19,24 +19,25 @@ public class Turno {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long Id; 
+	private Long Id; 
 	
 	
-	public String estado; // revisar
+	private String estado; // revisar
 	
-	public Date creacion;
+	private Date creacion;
 	
-	public String observaciones;
+	private String observaciones;
 	
 	
-	public Date hora;
-	
-	public Usuario usuario;
-	@ManyToOne
-	public Paciente paciente;
+	private Date hora;
 	
 	@ManyToOne
-	public Consultorio consultorio;
+	private Usuario usuario;
+	
 	@ManyToOne
-	public Profesional profesional;
+	private Paciente paciente;	
+	@ManyToOne
+	private Consultorio consultorio;
+	@ManyToOne
+	private Profesional profesional;
 }

@@ -18,10 +18,10 @@ public class Consultorio {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long Id;
+	private Long Id;
 	@NotBlank(message = "El número de Consultorio es obligatorio")
 	@Column(nullable = false)
-	public String numero;
+	private String numero;
 	
-	public String observacion;
+	private String observacion;
 }

@@ -1,6 +1,7 @@
 package com.api.consultorios.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +12,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "paciente")
@@ -20,33 +22,36 @@ public class Paciente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long Id;
+	private Long Id;
 	
 	@NotBlank(message = "El nombre es obligatorio")
 	@Column(nullable = false)
-	public String nombre;
+	private String nombre;
 	
 	@NotBlank(message = "El apellido es obligatorio")
 	@Column(nullable = false)
-	public String apellido;
+	private String apellido;
 	
 	@NotBlank(message = "El CUIL es obligatorio")
 	@Column(nullable = false)
-	public String CUIL;
+	private String CUIL;
 	
 	@NotBlank(message = "El Número de afiliado es obligatorio")
 	@Column(nullable = false)
-	public String numAfiliado;
+	private String numAfiliado;
 	
 	@NotBlank(message = "El eMail es obligatorio")
 	@Column(nullable = false)
-	public String mail;
+	private String mail;
 	
-	public String domicilio;
+	private String domicilio;
 	
-	public Date nacimiento;
+	private Date nacimiento;
 	
-	public String sexo; 
+	private String sexo; 
 	
-	public String observaciones;
+	private String observaciones;
+	
+	@OneToMany
+	private List<Turno> turno;
 }
