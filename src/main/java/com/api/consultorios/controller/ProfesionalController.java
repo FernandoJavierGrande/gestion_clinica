@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,25 +29,20 @@ public class ProfesionalController {
 	private ProfesionalService pService;
 	
 	@PostMapping
-	public ResponseEntity<ProfesionalRequestDto> createProfesional(@Valid @RequestBody ProfesionalRequestDto profesionalDto){
+	public ResponseEntity<ProfesionalResponseDto> createProfesional(@Valid @RequestBody ProfesionalRequestDto profesionalDto){
+		return ResponseEntity.ok(pService.createProfesional(profesionalDto));
+	}
 	
-		try	{
-			return ResponseEntity.status(HttpStatus.CREATED).body(pService.createProfesional(profesionalDto));
-		}
-		catch (IllegalArgumentException e) {
-	        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "error"+ e.getMessage());
-	    }
-		// falta alguna validacion de uq sobre cuil y matricula
-		catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-		} 
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Long> Delete(@PathVariable Long id){
 		
-		
+		return ResponseEntity.ok(pService.deleteCliente(id));
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<ProfesionalRequestDto> getProfesionalById(@PathVariable Long id){
 		
+			
 		return ResponseEntity.ok(pService.getProfesional(id));
 	}
 	
@@ -55,5 +52,15 @@ public class ProfesionalController {
 		return ResponseEntity.ok(pService.getProfesionales());
 	}
 	
-
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<ProfesionalResponseDto> updateProfesional(
+	        @PathVariable Long id,
+	        @Valid @RequestBody ProfesionalRequestDto request) {
+	    
+		System.out.println("---duracion turno*-- " + request.getDuracion_turno_id());
+	    return ResponseEntity.ok(pService.updateProfesional(id, request));
+	}
+	
+	
 }

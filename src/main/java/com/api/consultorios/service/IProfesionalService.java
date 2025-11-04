@@ -6,13 +6,15 @@ import com.api.consultorios.dto.ProfesionalRequestDto;
 import com.api.consultorios.dto.ProfesionalResponseDto;
 
 public interface IProfesionalService {
-	ProfesionalRequestDto createProfesional(ProfesionalRequestDto profesionalDto); // ver que necesito
+	ProfesionalResponseDto createProfesional(ProfesionalRequestDto profesionalDto); // ver que necesito
 	
 	ProfesionalRequestDto getProfesional(Long id);
 	
-	void updateProfesional(Long id, ProfesionalRequestDto profesionalDto );
+	public ProfesionalResponseDto updateProfesional(Long id, ProfesionalRequestDto request);
 	
 	Long deleteCliente(Long id);
 	
 	List<ProfesionalResponseDto> getProfesionales();
 }
+
+

@@ -2,6 +2,9 @@ package com.api.consultorios.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,9 +32,6 @@ public class Profesional {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message = "La Matricula es obligatoria")
-    @Column(nullable = false)
-	private String matricula ;
 	
 	@NotBlank(message = "El CUIL es obligatorio")
     @Column(nullable = false, unique = true )
@@ -45,7 +46,7 @@ public class Profesional {
 	private String telefono ;
 	
 	@NotBlank(message = "El eMAIL es obligorio")
-    @Column(nullable = false)
+    @Column(nullable = false)	
 	private String mail ;
 	
 	@NotBlank(message = "La Fecha de nacimiento es obligatoria")
@@ -59,10 +60,17 @@ public class Profesional {
     @JoinColumn(name = "duracion_turno", nullable = false)
 	private Duracion_turno duracion_turno;	
     
-    @ManyToMany
-    @JoinTable(name ="profesional_especialidad",
-    		   joinColumns = @JoinColumn(name = "profesional_id"),
-    		   inverseJoinColumns = @JoinColumn(name = "especialidad_id"))
-    private List<Especialidad> especialidades;
+    //matriculas
+//    @ManyToMany
+//    @JsonIgnore
+//    @JoinTable(name ="profesional_especialidad",
+//    		   joinColumns = @JoinColumn(name = "profesional_id"),
+//    		   inverseJoinColumns = @JoinColumn(name = "especialidad_id"))
+//    private List<Especialidad> especialidades;
 	
+    @OneToMany(mappedBy = "profesional", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Matricula> matriculas;
+    
+ 
 }

@@ -3,12 +3,13 @@ package com.api.consultorios.entity;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Id;
@@ -24,23 +25,24 @@ public class Paciente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
-	@NotBlank(message = "El nombre es obligatorio")
+//	@NotBlank(message = "El nombre es obligatorio")
 	@Column(nullable = false)
 	private String nombre;
 	
-	@NotBlank(message = "El apellido es obligatorio")
+//	@NotBlank(message = "El apellido es obligatorio")
 	@Column(nullable = false)
 	private String apellido;
 	
-	@NotBlank(message = "El CUIL es obligatorio")
-	@Column(nullable = false)
+//	@NotBlank(message = "El CUIL es obligatorio")
+	@Column(nullable = false, unique = true)
+	@JsonProperty("CUIL")
 	private String CUIL;
 	
-	@NotBlank(message = "El Número de afiliado es obligatorio")
-	@Column(nullable = false)
+//	@NotBlank(message = "El Número de afiliado es obligatorio")
+	@Column(nullable = false, unique = true)
 	private String numAfiliado;
 	
-	@NotBlank(message = "El eMail es obligatorio")
+//	@NotBlank(message = "El eMail es obligatorio")
 	@Column(nullable = false)
 	private String mail;
 	

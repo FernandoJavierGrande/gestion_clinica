@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProfesionalRequestDto {
 
-	@NotNull(message = "La matricula es obligatorio")
-	private String matricula;
 	
 	@NotNull(message = "La fecha de nacimiento es obligatoria")
 	//@JsonFormat(pattern = "yyyy-MM-dd")
@@ -37,10 +35,10 @@ public class ProfesionalRequestDto {
 	private String observaciones;
 	
 	@NotNull(message = "Debe agregar al menos una especialidad")
-	private List<Long> especialidades_id;
+	private List<MatriculaRequestDto> matriculas;
 	
 	@NotNull(message = "La duracion del turno es obligatorio")
-	@JsonProperty("duracion_id")
+	//@JsonProperty("duracion_id")
 	private Long duracion_turno_id;
 	
 }

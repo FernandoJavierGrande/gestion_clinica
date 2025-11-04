@@ -3,7 +3,6 @@ package com.api.consultorios.dto;
 import java.util.List;
 
 import com.api.consultorios.entity.Duracion_turno;
-import com.api.consultorios.entity.Especialidad;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProfesionalResponseDto {
 	
-	private String matricula;
+	private Long id;
 	
 	private String nacimiento;
 	
@@ -28,7 +27,7 @@ public class ProfesionalResponseDto {
 	
 	private String observaciones;
 	
-	private List<Especialidad> especialidades;  
+	private List<MatriculaResponseDto> matriculas;
 	
-	private Duracion_turno duracion;
+	private Long duracion_turno_id;
 }
