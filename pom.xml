@@ -59,12 +59,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency>		
 		<dependency>
-			<groupId>edu.curso.java.integrador</groupId>
-			<artifactId>sistema.reclamos</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>	
 		<dependency>
     		<groupId>org.modelmapper</groupId>
     		<artifactId>modelmapper</artifactId>
