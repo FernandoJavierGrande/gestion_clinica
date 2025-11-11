@@ -1,24 +1,25 @@
-# Imagen base con JDK 17 (Render soporta OpenJDK)
+# Imagen base con Java 17
 FROM eclipse-temurin:17-jdk-alpine
 
-# Establecer directorio de trabajo
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar pom.xml y descargar dependencias (para cacheo)
+# Copiar archivos necesarios para compilar
 COPY pom.xml .
 COPY mvnw .
 COPY .mvn .mvn
 
+# Descargar dependencias (para cache)
 RUN ./mvnw dependency:go-offline -B
 
-# Copiar el resto del código fuente
+# Copiar el código fuente
 COPY src ./src
 
-# Compilar el proyecto (sin tests)
+# Compilar la aplicación sin tests
 RUN ./mvnw clean package -DskipTests
 
 # Exponer el puerto 8080
 EXPOSE 8080
 
-# Ejecutar la aplicación
+# Ejecutar el .jar final
 CMD ["java", "-jar", "target/consultorios-0.0.1-SNAPSHOT.jar"]
